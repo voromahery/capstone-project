@@ -5,7 +5,6 @@ import { Context } from '../Context.js';
 
 function Photos() {
 	const { allPhotos } = useContext(Context);
-	console.log(allPhotos);
 	const imageElements = allPhotos.map((img, index) => (
 		<Image
 			key={img.id}
