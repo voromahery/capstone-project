@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../Context";
 import PropTypes from 'prop-types';
-import {useLocalStorage} from '../Context';
-
 
 function Image({ className, img }) {
     const [hovered, setHovered] = useState(false);
