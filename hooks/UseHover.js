@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 function UseHover() {
     const [hovered, setHovered] = useState(false);
     const ref = useRef(null);
-    
+
     function enter() {
         setHovered(true);
     }
@@ -14,12 +14,13 @@ function UseHover() {
     }
 
     useEffect(() => {
-        ref.current.addEventListener("mouseenter", enter);
-        ref.current.addEventListener("mouseleave", leave);
+        const refInstance = ref.current;
+        refInstance.addEventListener("mouseenter", enter);
+        refInstance.addEventListener("mouseleave", leave);
         return () => {
             // Clean up phase, this will run the component unmount. 
-            ref.current.removeEventListener("mouseenter", enter);
-            ref.current.removeEventListener("mouseleave", leave);
+            refInstance.removeEventListener("mouseenter", enter);
+            refInstance.removeEventListener("mouseleave", leave);
         }
     }, [])
     return [hovered, ref]
