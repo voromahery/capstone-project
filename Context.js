@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
+import CartItem from './components/CartItem';
 const Context = React.createContext();
 
 function ContextProvider(props) {
     const [allPhotos, setAllPhotos] = useState([]);
     const [cartItems, setCartItems] = useState([]);
-    const [isOrdered, setIsOrdered] = useState(false);
     const endpoint = "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json";
 
     async function dataFetch(url) {
@@ -21,6 +21,10 @@ function ContextProvider(props) {
     useEffect(() => {
         dataFetch(endpoint);
     }, [])
+
+    function emptyCart() {
+        setCartItems([]);
+    }
 
     function toggleFavorite(id) {
         const newPhotosArray = allPhotos.map(photo => {
@@ -39,24 +43,9 @@ function ContextProvider(props) {
     function removeFromCart(id) {
         setCartItems(prevItems => prevItems.filter(item => item.id !== id));
     }
-    function order() {
-        setIsOrdered(true);
-        setTimeout(() => {
-            setCartItems([]);
-            setIsOrdered(false);
-        }, 3000)
-    }
     
-    // # Challenge
-    // Let our user place their order!
-    // Clicking the "Place Order" button should:
-    // 1. Change the text to "Ordering..."
-    // 2. Timeout for 3 seconds (to simulate an order being placed)
-    // 3. Log "Order placed!" to the console
-    // 4. Empty out the cart
-
     return (
-        <Context.Provider value={{ allPhotos, toggleFavorite, addToCart, cartItems, removeFromCart, isOrdered, order}}>
+        <Context.Provider value={{ allPhotos, toggleFavorite, addToCart, cartItems, removeFromCart, emptyCart}}>
             {props.children}
         </Context.Provider>
     )

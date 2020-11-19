@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../Context";
 import PropTypes from 'prop-types';
+import {useLocalStorage} from '../Context';
 
 
 function Image({ className, img }) {
@@ -23,16 +24,8 @@ function Image({ className, img }) {
         }
     }
 
-    function hover() {
-        setHovered(true);
-    }
-
-    function notHover() {
-        setHovered(false);
-    }
-
     return (
-        <div className={`${className} image-container`} onMouseEnter={hover} onMouseLeave={notHover}>
+        <div className={`${className} image-container`} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
             {heartIcon()}
             {addCartIcon()}
             <img src={img.url} className="image-grid" />
