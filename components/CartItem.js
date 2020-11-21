@@ -4,7 +4,6 @@ import UseHover from './../hooks/UseHover';
 function CartItem({ item }) {
     const { removeFromCart } = useContext(Context);
     const [hovered, ref] = UseHover();
-    console.log(ref);
     const iconClass = hovered?"ri-delete-bin-fill":"ri-delete-bin-line";
 	
         return(

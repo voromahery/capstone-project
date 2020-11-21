@@ -21,15 +21,15 @@ function ContextProvider(props) {
         }
     }
 
-function initCartItems() {
-    const lsCartItems = JSON.parse(localStorage.getItem('cartItems'));
-    if (lsCartItems) {
-        setCartItems(lsCartItems);
+    function initCartItems() {
+        const lsCartItems = JSON.parse(localStorage.getItem('cartItems'));
+        if (lsCartItems) {
+            setCartItems(lsCartItems);
+        }
     }
-}
 
     function addToCart(newItem) {
-        // Add an element in an  array in an immutable way
+        // Add an element in an array in an immutable way
         setCartItems(prevItems => [...prevItems, newItem]);
     }
 
@@ -39,14 +39,14 @@ function initCartItems() {
     }, [])
 
     useEffect(() => {
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     })
 
     useEffect(() => {
-		if (allPhotos.length > 0) {
-			localStorage.setItem('allPhotos', JSON.stringify(allPhotos));
-		}
-	}, [allPhotos]);
+        if (allPhotos.length > 0) {
+            localStorage.setItem('allPhotos', JSON.stringify(allPhotos));
+        }
+    }, [allPhotos]);
 
     function emptyCart() {
         setCartItems([]);

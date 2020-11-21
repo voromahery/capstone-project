@@ -8,7 +8,7 @@ function App() {
 	return (
 		<div>
 			<Header />
-			<h1>Home Page</h1>
+			<h1>Popular songs</h1>
 			<Switch>
 				<Route exact path="/">
 					<Photos />
